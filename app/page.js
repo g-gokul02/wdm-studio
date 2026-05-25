@@ -1,66 +1,34 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import { useState, useEffect } from 'react'
+import Navbar from '../components/Navbar'
+import HeroSection from '../components/HeroSection'
+import ServicesSection from '../components/ServiceSection'
+import PortfolioSection from '../components/PotfolioSection'
+import ContactSection from '../components/ContactSection'
 
 export default function Home() {
+  const [dark, setDark] = useState(true)
+
+  const bg  = dark ? '#0e0c09' : '#f5f2eb'
+  const fg  = dark ? '#f0ede6' : '#1a1812'
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div style={{ background: bg, color: fg, minHeight: '100vh',
+      fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
+      transition: 'background 0.4s, color 0.4s', overflowX: 'hidden' }}>
+      <Navbar dark={dark} setDark={setDark} fg={fg} />
+      <HeroSection dark={dark} fg={fg} />
+      <ServicesSection dark={dark} fg={fg} />
+      <PortfolioSection dark={dark} fg={fg} />
+      <ContactSection dark={dark} fg={fg} />
+      <footer style={{ padding: '28px 80px', borderTop: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+        <span style={{ fontFamily: 'Playfair Display, serif', fontSize: 18, fontWeight: 700 }}>
+          <span style={{ color: '#C9A96E' }}>✦</span> Wdm
+        </span>
+        <span style={{ opacity: 0.5, fontSize: 13 }}>© 2026 Wdm Studio. All rights reserved.</span>
+      </footer>
     </div>
-  );
+  )
 }
